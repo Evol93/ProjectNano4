@@ -1,5 +1,7 @@
-FROM gradle:5.2.1-jdk8
+FROM java:openjdk-7-jre-alpine
 
 COPY . .
 
-CMD ["gradle", "run", "2>&1"]
+CMD ["gradlew", "buildAndCopy"]
+
+CMD ["java", "-jar", "-Dwzpath=wz/", "dist/ProjectNano.jar", "&>", "logs/$(date +\"%Y_%m_%d_%I_%M_%p\").log"]
